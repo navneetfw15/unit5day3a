@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import {Counter} from "./componets/counter";
 
 function App() {
+  const [counter,setCounter] = useState(0);
+
+  function Double(){
+    setCounter(counter*2);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter prop={counter} set={setCounter} />
+      <button onClick={()=>Double()}>Double</button>
+      <h1>number is:<span className={counter%2==0?"greentext":"redtext"}>{counter%2==0?"Even":"Odd"}</span></h1>
     </div>
+    
   );
 }
 
 export default App;
+
